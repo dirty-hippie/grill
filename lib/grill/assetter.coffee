@@ -2,6 +2,7 @@ Mincer     = require 'mincer'
 Path       = require 'path'
 FS         = require 'fs'
 HamlEngine = require '../mincer/engines/haml_engine'
+MarkdownEngine = require '../mincer/engines/markdown_engine'
 
 #
 # Wrapper around Mincer that makes proper setup and adds some useful helpers
@@ -20,8 +21,10 @@ module.exports = class Assetter
       @grunt.log.writeln message
 
     Mincer.registerEngine '.haml', HamlEngine
+    Mincer.registerEngine '.md', MarkdownEngine
 
     HamlEngine.configure config: config, environment: environment
+    MarkdownEngine.configure config: config, environment: environment
 
     Mincer.CoffeeEngine.configure bare: false
 
